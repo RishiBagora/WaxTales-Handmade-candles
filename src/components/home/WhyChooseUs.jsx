@@ -31,6 +31,7 @@ const features = [
 
 export default function WhyChooseUs() {
   const luxeEase = [0.19, 1, 0.22, 1];
+  
 
   return (
     <section className="relative bg-[#F9F4EE] overflow-hidden pt-24 pb-28 lg:pt-32 lg:pb-36">
