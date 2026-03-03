@@ -93,7 +93,7 @@ export default function Navbar() {
             <motion.a
               whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(78, 52, 46, 0.2)" }}
               whileTap={{ scale: 0.98 }}
-              href=""
+              href={whatsappLink}
               className="flex items-center gap-2 px-6 py-2.5 rounded-full text-white font-poppins text-sm shadow-md"
               style={{
                 background: "linear-gradient(135deg, #4E342E 0%, #3D2B1F 100%)",
