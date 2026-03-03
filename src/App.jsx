@@ -16,7 +16,7 @@ const App = () => {
     <div className=''>
       <Navbar/>
       <div className='pt-[110px] lg:pt-[130px]'>
-        <PageWrapper>
+        
          <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -26,7 +26,7 @@ const App = () => {
         <Route path='/policies' element={<Policies />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
-      </PageWrapper>
+      
        </div>
        <Footer/>
        <WhatsAppFloat/>

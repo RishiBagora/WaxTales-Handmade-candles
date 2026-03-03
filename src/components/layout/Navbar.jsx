@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp, FaCoffee } from "react-icons/fa"; // Coffee icon added
 import { FiMenu, FiX } from "react-icons/fi";
 import { useLocation, Link } from "react-router-dom";
-
+// import business from "../../data/business";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Products", path: "/products" },
@@ -16,6 +16,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const whatsappLink = `https://wa.me/9922007656?text=Hi, I want to place a custom candle order`;
 
   // Coffee Theme Colors
   const colors = {
@@ -92,7 +93,7 @@ export default function Navbar() {
             <motion.a
               whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(78, 52, 46, 0.2)" }}
               whileTap={{ scale: 0.98 }}
-              href="#"
+              href=""
               className="flex items-center gap-2 px-6 py-2.5 rounded-full text-white font-poppins text-sm shadow-md"
               style={{
                 background: "linear-gradient(135deg, #4E342E 0%, #3D2B1F 100%)",
@@ -120,7 +121,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] bg-[#3D2B1F] flex flex-col justify-center items-center"
+            className="fixed inset-0 z-[70] text-[#FFF8F0] bg-[#3D2B1F] flex flex-col justify-center items-center"
           >
             <button 
               className="absolute top-8 right-8 text-[#FFF8F0]/80 hover:text-white"
@@ -151,7 +152,7 @@ export default function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                href="#"
+                href={whatsappLink}
                 className="mt-4 flex items-center gap-3 px-8 py-4 rounded-full bg-[#A67B5B] text-[#FFF8F0] text-lg font-medium"
               >
                 <FaWhatsapp /> <span className="text-white">WhatsApp Us </span> 
