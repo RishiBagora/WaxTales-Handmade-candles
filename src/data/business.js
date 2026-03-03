@@ -1,10 +1,10 @@
 export const business = {
-  name: "Handicraft by Yukti",
-  tagline: "Handmade gifts crafted with love 💕",
+  name: "Wax Tales",
+  tagline: "Wax Tales crafts Mumbai-made modak candles in premium soy and paraffin wax with rich fragrances, perfect for gifting, events, and bulk wholesale orders.",
 
-  whatsappNumber: "919999999999", // change later
-  email: "handicraftbyyukti@gmail.com",
-  instagram: "https://instagram.com/",
+  whatsappNumber: "919922007656", // change later
+  email: "waxtales@gmail.com",
+  instagram: "https://www.instagram.com/waxtales.co/",
 
   city: "India",
   workingHours: "Mon - Sat : 10am - 7pm"

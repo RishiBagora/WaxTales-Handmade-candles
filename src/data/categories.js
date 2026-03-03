@@ -1,30 +1,27 @@
 export const categories = [
+ 
   {
-    name: "All",
-    image: "/images/categories/all.jpg",
+    name: "Vanilla",
+    image: "https://i.pinimg.com/736x/81/4c/41/814c41786fa3474ab25c6a556dd516d1.jpg",
   },
   {
-    name: "Gift Hampers",
-    image: "https://i.pinimg.com/736x/b9/55/ae/b955ae618c37e070c91484d722e9c542.jpg",
+    name: "Saffron",
+    image: "https://i.pinimg.com/736x/50/20/7a/50207a52cd1be593fafe8b96a9200f59.jpg",
   },
   {
-    name: "Resin Art",
-    image: "https://i.pinimg.com/1200x/a7/95/8f/a7958fc28d3f41ef75fd71f489a4e591.jpg",
+    name: "Chocolate",
+    image: "https://i.pinimg.com/1200x/bf/ec/bb/bfecbbeb2c1891a8453b96098f1b749d.jpg",
   },
   {
-    name: "Explosion Boxes",
-    image: "https://i.pinimg.com/736x/2a/10/9e/2a109e7c2645ebe11630f866628bde48.jpg",
+    name: "Mango",
+    image: "https://i.pinimg.com/1200x/2b/3c/70/2b3c707948c5fce47fa0c26d41affe88.jpg",
   },
   {
-    name: "Photo Frames",
-    image: "https://i.pinimg.com/1200x/b1/01/95/b1019528e17f82dc780d1cf61af912a4.jpg",
+    name: "Hibiscus",
+    image: "https://i.pinimg.com/1200x/9d/09/e6/9d09e6e945b1eb9bd484ae284e551ce7.jpg",
   },
   {
-    name: "Scrapbooks",
-    image: "https://i.pinimg.com/736x/55/af/25/55af253715a77a21f84ca0bf214e534d.jpg",
-  },
-  {
-    name: "Couple Gifts",
-    image: "https://i.pinimg.com/1200x/6d/aa/03/6daa03f937b449d1a6a1faf14f37daf4.jpg",
+    name: "Orange",
+    image: "https://i.pinimg.com/736x/48/b9/1b/48b91bda57ec0085a19f13cf944c130e.jpg",
   },
 ];

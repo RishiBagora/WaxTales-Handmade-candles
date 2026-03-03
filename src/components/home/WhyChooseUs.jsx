@@ -1,103 +1,124 @@
 import { motion } from "framer-motion";
 import Container from "../common/Container";
-import SectionTitle from "../common/SectionTitle";
 import { FiHeart, FiStar, FiEdit3, FiPackage } from "react-icons/fi";
 
 const features = [
   {
     title: "Handmade with Love",
     description:
-      "Every product is handcrafted individually, making each piece truly unique.",
+      "Every candle is hand-poured in small batches, making each piece unique.",
     icon: FiHeart,
   },
   {
-    title: "Premium Materials",
+    title: "Premium Wax Blend",
     description:
-      "We use high quality resin and materials for long lasting beauty.",
+      "We use high quality soy & coconut wax for clean and long lasting burn.",
     icon: FiStar,
   },
   {
-    title: "Fully Customizable",
+    title: "Luxury Fragrances",
     description:
-      "Personalize your gifts exactly the way you want for your loved ones.",
+      "Infused with rich scents that transform mood and elevate your space.",
     icon: FiEdit3,
   },
   {
     title: "Safe Delivery",
     description:
-      "Carefully packed to ensure your gifts reach safely and beautifully.",
+      "Carefully packed to ensure your candles arrive safely and beautifully.",
     icon: FiPackage,
   },
 ];
 
 export default function WhyChooseUs() {
-  const containerAnim = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { staggerChildren: 0.1, duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const cardAnim = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  const luxeEase = [0.19, 1, 0.22, 1];
 
   return (
-    <section className="bg-[var(--bg-main)] py-14 lg:py-24">
-      <Container>
-        <SectionTitle
-          subtitle="Why Us"
-          title="Why Choose Handicraft by Yukti"
-          description="Every gift is crafted with care, passion and attention to detail."
+    <section className="relative bg-[#F9F4EE] overflow-hidden pt-24 pb-28 lg:pt-32 lg:pb-36">
+
+      {/* TOP WAVE (FIXED) */}
+      <svg
+        viewBox="0 0 1440 120"
+        className="absolute top-0 left-0 w-full h-[90px] sm:h-[110px] lg:h-[130px] -translate-y-[60%] pointer-events-none"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#F6EDE4"
+          d="M0,60 C240,140 480,0 720,60 C960,120 1200,0 1440,60 L1440,0 L0,0 Z"
         />
+      </svg>
 
-        <motion.div
-          variants={containerAnim}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-10 mt-12"
-        >
-          {features.map((item) => {
+      {/* Decorative blobs */}
+      <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#F3D9D9] rounded-full blur-3xl opacity-40" />
+      <div className="absolute bottom-0 right-0 w-60 h-60 bg-[#EBDAC6] rounded-full blur-3xl opacity-40" />
+
+      <Container className="relative z-10">
+
+        {/* HEADER */}
+        <div className="text-center max-w-xl mx-auto mb-14 lg:mb-20">
+          <p className="text-xs tracking-[0.4em] text-[#B58E8E] uppercase mb-6">
+            Why Us
+          </p>
+
+          <h2 className="font-serif text-[32px] md:text-[46px] text-[#4B3E3E]">
+            Crafted with Love & Detail
+          </h2>
+
+          <p className="mt-4 text-[#7A6C6C] text-sm md:text-base leading-relaxed">
+            Every candle is thoughtfully created to bring warmth, calm and joy.
+          </p>
+        </div>
+
+        {/* GRID */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-10">
+          {features.map((item, i) => {
             const Icon = item.icon;
-
             return (
-              <motion.div key={item.title} variants={cardAnim}>
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  className="group h-full p-7 rounded-2xl bg-white/60 backdrop-blur-lg 
-                  border border-white/40
-                  shadow-[0_8px_25px_rgba(0,0,0,0.05)]
-                  hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)]
-                  transition-all duration-300"
-                >
-                  {/* ICON WRAPPER */}
-                  <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-[var(--accent)]/60 mb-5 group-hover:bg-[var(--primary)]/15 transition">
-                    <Icon
-                      size={26}
-                      className="text-[var(--primary)]"
-                      strokeWidth={1.7}
-                    />
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1, ease: luxeEase }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="relative group"
+              >
+                <div className="absolute inset-0 bg-white rounded-[40px_20px_40px_20px] shadow-[0_15px_35px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500" />
+
+                <div className="relative p-5 sm:p-6 lg:p-8">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center 
+                  rounded-[60%_40%_50%_50%] 
+                  bg-gradient-to-br from-[#F6DADA] to-[#EBDAC6] 
+                  mb-4 sm:mb-6 shadow-sm">
+                    <Icon size={24} className="text-[#9C6F6F]" strokeWidth={1.8} />
                   </div>
 
-                  {/* TITLE */}
-                  <h3 className="font-semibold text-lg text-[var(--text-primary)]">
+                  <h3 className="font-serif text-[15px] sm:text-lg text-[#4B3E3E] mb-2 sm:mb-3">
                     {item.title}
                   </h3>
 
-                  {/* DESCRIPTION */}
-                  <p className="text-sm text-[var(--text-secondary)] mt-2 leading-relaxed">
+                  <p className="text-[12px] sm:text-sm text-[#7A6C6C] leading-relaxed">
                     {item.description}
                   </p>
-                </motion.div>
+                </div>
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
+
       </Container>
+
+      {/* BOTTOM WAVE (FIXED) */}
+      <svg
+        viewBox="0 0 1440 120"
+        className="absolute bottom-0 left-0 w-full h-[90px] sm:h-[110px] lg:h-[130px] translate-y-[60%] pointer-events-none"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#F6EDE4"
+          d="M0,60 C240,140 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z"
+        />
+      </svg>
+
     </section>
   );
 }

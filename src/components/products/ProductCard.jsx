@@ -3,69 +3,81 @@ import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
   return (
-    <Link to={`/products/${product.slug}`} className="block h-full">
+    <Link to={`/products/${product.slug}`} className="block h-full group">
+
       <motion.div
-        whileHover={{ y: -5 }}
-        className="group h-full flex flex-col bg-white rounded-2xl 
-        overflow-hidden border border-black/5
-        shadow-[0_4px_18px_rgba(0,0,0,0.06)]
-        hover:shadow-[0_12px_30px_rgba(0,0,0,0.10)]
-        transition-all duration-300"
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+        className="h-full flex flex-col bg-[#F8F5F1] overflow-hidden 
+        border border-[#ECE7E1] transition-all duration-500"
       >
-        {/* IMAGE — FIXED RATIO */}
-        <div className="relative aspect-[1/1] overflow-hidden bg-gray-100">
-        {/* DISCOUNT BADGE */}
-{product.discountPercent && (
-  <div className="absolute top-3 left-3 bg-[var(--primary)] text-white text-xs px-2.5 py-1 rounded-full shadow-md">
-    {product.discountPercent}% OFF
-  </div>
-)}
+        {/* IMAGE */}
+        <div className="relative aspect-square sm:aspect-[4/5] overflow-hidden">
+
+          {/* Discount Badge */}
+          {product.discountPercent && (
+            <div className="absolute top-2 left-2 sm:top-4 sm:left-4 
+            bg-[#1A1816] text-white text-[9px] sm:text-[10px] 
+            tracking-[0.15em] px-2 py-1 sm:px-3 z-10">
+              {product.discountPercent}% OFF
+            </div>
+          )}
+
           <motion.img
-            whileHover={{ scale: 1.06 }}
-            transition={{ duration: 0.4 }}
             src={product.image}
             alt={product.name}
             className="w-full h-full object-cover"
+            whileHover={{ scale: 1.06 }}
+            transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
           />
+
+          <div className="absolute inset-0 bg-[#1A1816]/0 group-hover:bg-[#1A1816]/5 transition-all duration-700" />
         </div>
 
-        {/* CONTENT */}
-        <div className="flex flex-col flex-1 p-3 sm:p-4">
+       {/* CONTENT */}
+<div className="flex flex-col flex-1 px-3 pt-3 pb-4 sm:px-4 sm:pt-5 sm:pb-6">
 
-          {/* TITLE — MAX 2 LINES */}
-          <h3 className="text-[var(--text-primary)] font-medium text-sm sm:text-base line-clamp-2 min-h-[40px]">
-            {product.name}
-          </h3>
+  {/* CATEGORY */}
+  <p className="text-[9px] sm:text-[10px] tracking-[0.22em] text-[#9C8770] uppercase mb-2">
+    Hand Poured Candle
+  </p>
 
-          {/* PRICE — PUSH TO BOTTOM */}
-          {/* PRICE AREA */}
-<div className="mt-auto pt-3 flex items-end justify-between">
-  <div className="flex flex-col">
-
-    {/* DISCOUNTED PRICE */}
-    <span className="text-[var(--primary)] font-semibold text-base sm:text-lg">
-      ₹{product.price}
-    </span>
-
-    {/* ORIGINAL PRICE (IF DISCOUNT EXISTS) */}
-    {product.discountPercent && (
-      <span className="text-xs text-[var(--text-secondary)] line-through">
-        ₹{product.originalPrice}
-      </span>
-    )}
+  {/* TITLE AREA — FIXED HEIGHT */}
+  <div className="min-h-[38px] sm:min-h-[48px]">
+    <h3 className="font-serif text-[15px] sm:text-lg text-[#1A1816] leading-snug line-clamp-2">
+      {product.name}
+    </h3>
   </div>
 
-  {/* QUICK VIEW BUTTON */}
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    className="text-xs px-3 py-1.5 rounded-full 
-    bg-[var(--accent)] text-[var(--text-primary)] 
-    opacity-0 group-hover:opacity-100 transition"
-  >
-    View
-  </motion.div>
+  {/* PRICE AREA — FIXED HEIGHT */}
+  <div className="mt-auto pt-3 flex items-end justify-between min-h-[46px]">
+
+    <div className="flex flex-col justify-end">
+      <span className="text-[#1A1816] text-[15px] sm:text-lg font-medium leading-none">
+        ₹{product.price}
+      </span>
+
+      {/* reserve space even if no discount */}
+      <span className="text-[11px] sm:text-sm text-[#9C8770] line-through h-[16px]">
+        {product.discountPercent ? `₹${product.originalPrice}` : ""}
+      </span>
+    </div>
+
+    {/* Desktop hover CTA (fixed space reserved) */}
+    <div className="hidden sm:block w-[110px] text-right">
+      <span className="text-[11px] tracking-[0.2em] uppercase text-[#1A1816]
+      translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100
+      transition-all duration-500">
+        View Product
+      </span>
+    </div>
+
+  </div>
+
+  {/* UNDERLINE */}
+  <div className="mt-3 sm:mt-5 h-[1px] w-0 bg-[#1A1816] group-hover:w-full transition-all duration-700" />
+
 </div>
-        </div>
       </motion.div>
     </Link>
   );

@@ -1,88 +1,85 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Container from "../common/Container";
-import SectionTitle from "../common/SectionTitle";
 import { categories } from "../../data/categories";
 
 export default function CategoriesPreview() {
   const filteredCategories = categories.filter((cat) => cat.name !== "All");
-
-  const containerAnim = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const cardAnim = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  const luxeEase = [0.19, 1, 0.22, 1];
 
   return (
-    <section className="bg-[var(--accent)] py-12 lg:py-20">
+    <section className="relative py-20 lg:py-28 bg-[#F6F1EB] overflow-hidden">
       <Container>
 
-        <SectionTitle
-          subtitle="Browse"
-          title="Shop by Category"
-          description="Find the perfect handmade gift for every occasion."
-        />
+        {/* HEADER */}
+        <div className="text-center max-w-xl mx-auto mb-14 lg:mb-20">
+          <p className="text-xs tracking-[0.45em] text-[#9C8770] uppercase mb-6">
+            Browse
+          </p>
 
-        <motion.div
-          variants={containerAnim}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-10"
-        >
+          <h2 className="font-serif text-[34px] md:text-[48px] lg:text-[56px] text-[#1A1816]">
+            Shop by Category
+          </h2>
+
+          <p className="mt-5 text-[#6B635B] text-base md:text-lg leading-relaxed">
+            Discover scents crafted for every mood and every moment.
+          </p>
+
+          <div className="mt-7 w-16 h-[1px] bg-[#D8CFC4] mx-auto" />
+        </div>
+
+        {/* GRID */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           {filteredCategories.map((cat) => (
-            <motion.div key={cat.name} variants={cardAnim}>
-              <Link
-                to={`/products?category=${cat.name}`}
-                className="block h-full"
+            <Link
+              key={cat.name}
+              to={`/products?category=${cat.name}`}
+              className="group block"
+            >
+              <motion.div
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.6, ease: luxeEase }}
+                className="relative overflow-hidden aspect-[4/5] border border-[#705944] "
               >
-                <motion.div
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="bg-white rounded-2xl p-6 text-center shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] transition-all duration-300"
-                >
-                  {/* EMOJI / ICON */}
-                  <motion.div
-  whileHover={{ y: -5, scale: 1.02 }}
-  className="bg-white rounded-2xl overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] transition-all duration-300"
->
-  {/* IMAGE */}
-  <div className="h-[180px] overflow-hidden">
-    <img
-      src={cat.image}
-      alt={cat.name}
-      className="w-full h-full object-cover transition duration-500 hover:scale-110"
-    />
-  </div>
+                {/* IMAGE */}
+                <motion.img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 1.4, ease: luxeEase }}
+                />
 
- 
-</motion.div>
+                {/* Boutique Wavy Label */}
+                <div className="absolute bottom-0 left-0 w-full">
 
-                  {/* TITLE */}
-                  <h3 className="font-medium text-lg text-[var(--text-primary)]">
-                    {cat.name}
-                  </h3>
+                  {/* Wavy SVG Shape */}
+                  <svg
+                    viewBox="0 0 500 120"
+                    preserveAspectRatio="none"
+                    className="w-full h-[90px] block"
+                  >
+                    <path
+                      d="M0,60 C120,120 380,0 500,60 L500,120 L0,120 Z"
+                      fill="rgba(246,241,235,0.92)"
+                    />
+                  </svg>
 
-                  {/* SUBTEXT */}
-                  <p className="text-sm text-[var(--text-secondary)] mt-1">
-                    View Products →
-                  </p>
-                </motion.div>
-              </Link>
-            </motion.div>
+                  {/* TEXT AREA */}
+                  <div className="bg-[#F6F1EB]/90 backdrop-blur-md px-4 pb-4 pt-2 sm:px-6 sm:pb-6">
+
+                    <h3 className="font-serif text-[#1A1816] text-lg sm:text-2xl leading-tight">
+                      {cat.name}
+                    </h3>
+
+                  </div>
+
+                </div>
+
+              </motion.div>
+            </Link>
           ))}
-        </motion.div>
+        </div>
 
       </Container>
     </section>
