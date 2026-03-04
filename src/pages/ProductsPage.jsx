@@ -4,29 +4,45 @@ import { products } from "../data/products";
 import FilterSidebar from "../components/products/FilterSidebar";
 import SortBar from "../components/products/SortBar";
 import ProductsGrid from "../components/products/ProductsGrid";
-
+import useProducts from "../hooks/useProducts";
 export default function ProductsPage() {
+
+  const products = useProducts();
   const [selectedFragrance, setSelectedFragrance] = useState([]);
   const [selectedWax, setSelectedWax] = useState([]);
   const [sortOption, setSortOption] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   /* FILTER + SORT */
-  const filteredProducts = useMemo(() => {
-    let filtered = [...products];
+const filteredProducts = useMemo(() => {
 
-    if (selectedFragrance.length > 0)
-      filtered = filtered.filter(p => selectedFragrance.includes(p.fragrance));
+  let filtered = [...products];
 
-    if (selectedWax.length > 0)
-      filtered = filtered.filter(p => selectedWax.includes(p.waxType));
+  // FRAGRANCE FILTER
+  if (selectedFragrance.length > 0) {
+    filtered = filtered.filter(p =>
+      selectedFragrance.includes(p.fragrance)
+    );
+  }
 
-    if (sortOption === "low") filtered.sort((a,b)=>a.price-b.price);
-    if (sortOption === "high") filtered.sort((a,b)=>b.price-a.price);
-    if (sortOption === "rating") filtered.sort((a,b)=>b.rating-a.rating);
+  // WAX FILTER
+  if (selectedWax.length > 0) {
+    filtered = filtered.filter(p =>
+      selectedWax.includes(p.waxType)
+    );
+  }
 
-    return filtered;
-  }, [selectedFragrance, selectedWax, sortOption]);
+  // SORTING
+  if (sortOption === "low") filtered.sort((a,b)=>a.price-b.price);
+  if (sortOption === "high") filtered.sort((a,b)=>b.price-a.price);
+  if (sortOption === "rating") filtered.sort((a,b)=>b.rating-a.rating);
+
+  return filtered;
+
+}, [products, selectedFragrance, selectedWax, sortOption]);
+
+  console.log("selectedWax:", selectedWax);
+console.log("product wax:", products.map(p => p.waxType));
 
   return (
     <div className="relative bg-[#F6F1EB] min-h-screen overflow-hidden">
@@ -57,52 +73,76 @@ export default function ProductsPage() {
 
         {/* MOBILE BAR */}
         <div className="flex md:hidden justify-between items-center mb-8 gap-3">
+
           <button
-            onClick={()=>setIsFilterOpen(true)}
+            onClick={() => setIsFilterOpen(true)}
             className="px-6 py-3 rounded-full bg-white shadow text-sm"
           >
             Filters
           </button>
 
-          <SortBar setSortOption={setSortOption} count={filteredProducts.length}/>
+          <SortBar
+            setSortOption={setSortOption}
+            count={filteredProducts.length}
+          />
+
         </div>
+
 
         {/* DESKTOP LAYOUT */}
         <div className="grid md:grid-cols-[280px_1fr] gap-14">
 
           {/* SIDEBAR */}
           <div className="hidden md:block">
+
             <div className="sticky top-32 p-6 rounded-3xl bg-white/60 backdrop-blur-xl border border-[#E7DED2]">
-              <FilterSidebar
-                selectedFragrance={selectedFragrance}
-                setSelectedFragrance={setSelectedFragrance}
-                selectedWax={selectedWax}
-                setSelectedWax={setSelectedWax}
-              />
+
+             <FilterSidebar
+  products={products}
+  selectedFragrance={selectedFragrance}
+  setSelectedFragrance={setSelectedFragrance}
+  selectedWax={selectedWax}
+  setSelectedWax={setSelectedWax}
+/>
+
             </div>
+
           </div>
+
 
           {/* PRODUCTS */}
           <div>
+
             <div className="hidden md:block mb-8">
-              <SortBar setSortOption={setSortOption} count={filteredProducts.length}/>
+
+              <SortBar
+                setSortOption={setSortOption}
+                count={filteredProducts.length}
+              />
+
             </div>
 
             <ProductsGrid products={filteredProducts}/>
+
           </div>
+
         </div>
 
       </div>
 
+
       {/* MOBILE FILTER DRAWER */}
       <AnimatePresence>
+
         {isFilterOpen && (
+
           <motion.div
             initial={{opacity:0}}
             animate={{opacity:1}}
             exit={{opacity:0}}
             className="fixed inset-0 bg-black/40 z-50"
           >
+
             <motion.div
               initial={{x:-400}}
               animate={{x:0}}
@@ -110,8 +150,9 @@ export default function ProductsPage() {
               transition={{type:"spring", damping:25}}
               className="bg-[#F6F1EB] w-80 h-full p-8 shadow-xl"
             >
+
               <button
-                onClick={()=>setIsFilterOpen(false)}
+                onClick={() => setIsFilterOpen(false)}
                 className="mb-8 text-sm"
               >
                 Close ✕
@@ -123,9 +164,13 @@ export default function ProductsPage() {
                 selectedWax={selectedWax}
                 setSelectedWax={setSelectedWax}
               />
+
             </motion.div>
+
           </motion.div>
+
         )}
+
       </AnimatePresence>
 
     </div>

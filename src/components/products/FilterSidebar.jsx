@@ -1,15 +1,14 @@
-const fragrances = [
-  "Vanilla","Saffron","Chocolate","Mango","Hibiscus","Orange","Lavender","Sandalwood"
-];
-
-const waxTypes = ["Soy Wax","Paraffin","Beeswax"];
-
 export default function FilterSidebar({
+  products,
   selectedFragrance,
   setSelectedFragrance,
   selectedWax,
   setSelectedWax
 }) {
+
+  // dynamic filters
+  const fragrances = [...new Set(products?.map(p => p.fragrance))].filter(Boolean);
+  const waxTypes = [...new Set(products?.map(p => p.waxType))].filter(Boolean);
 
   const toggleItem = (item, list, setList) => {
     if (list.includes(item)) {
@@ -24,22 +23,22 @@ export default function FilterSidebar({
     setSelectedWax([]);
   };
 
- const Pill = ({ label, active, onClick }) => (
-  <button
-    onClick={onClick}
-    className={`h-9 px-4 flex items-center justify-center 
-    rounded-full text-[13px] font-medium whitespace-nowrap
-    transition-all duration-300 border
+  const Pill = ({ label, active, onClick }) => (
+    <button
+      onClick={onClick}
+      className={`h-9 px-4 flex items-center justify-center 
+      rounded-full text-[13px] font-medium whitespace-nowrap
+      transition-all duration-300 border
 
-    ${
-      active
-        ? "bg-[#1A1816] text-white border-[#1A1816] shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
-        : "bg-white border-[#E7DED2] text-[#6B6257] hover:border-[#1A1816] hover:text-[#1A1816]"
-    }`}
-  >
-    {label}
-  </button>
-);
+      ${
+        active
+          ? "bg-[#1A1816] text-white border-[#1A1816] shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+          : "bg-white border-[#E7DED2] text-[#6B6257] hover:border-[#1A1816] hover:text-[#1A1816]"
+      }`}
+    >
+      {label}
+    </button>
+  );
 
   return (
     <div className="bg-white/70 backdrop-blur-xl p-7 rounded-3xl border border-[#E7DED2] shadow-sm">
