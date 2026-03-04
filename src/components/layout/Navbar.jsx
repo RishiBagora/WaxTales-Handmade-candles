@@ -58,7 +58,7 @@ export default function Navbar() {
               className="text-[#3D2B1F] text-2xl"
             >
               
-              <img width="40px" height="40px" src="/images/logo.jpg" alt="Wax_Tales Logo" />
+              <img width="40px" height="40px" src="https://res.cloudinary.com/dpbomn41i/image/upload/logo_baafst" alt="Wax_Tales Logo" />
             </motion.div>
             <div className="font-playfair text-xl lg:text-2xl font-bold tracking-tight">
               <span className="text-[#3D2B1F]">Wax</span>

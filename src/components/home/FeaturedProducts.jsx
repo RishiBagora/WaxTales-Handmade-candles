@@ -151,9 +151,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Container from "../common/Container";
 import ProductCard from "../products/ProductCard";
-import { products } from "../../data/products";
+import useProducts from "../../hooks/useProducts";
 
 export default function FeaturedProducts() {
+   const products = useProducts();
   const featuredProducts = products.slice(0, 4);
   const luxeEase = [0.19, 1, 0.22, 1];
 

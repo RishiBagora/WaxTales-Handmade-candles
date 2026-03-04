@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
 
+
 const options = [
   { label: "Price: Low to High", value: "low" },
   { label: "Price: High to Low", value: "high" },
